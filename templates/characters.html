@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Character List</h1>
+
+    <!-- Search and Filter Form -->
+    <form method="GET" action="{{ url_for('characters') }}" class="form-inline mb-4">
+        <div class="form-group">
+            <input 
+                type="text" 
+                name="search" 
+                placeholder="Search by name" 
+                value="{{ request.args.get('search', '') }}" 
+                class="form-control"
+            >
+        </div>
+        <div class="form-group mr-3">
+            <select name="filter" class="form-control">
+                <option value="">Filter by tag</option>
+                {% for tag in available_tags %}
+                <option 
+                    value="{{ tag.lower() }}" 
+                    {% if request.args.get('filter', '').lower() == tag.lower() %}selected{% endif %}
+                >
+                    {{ tag }}
+                </option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Apply</button>
+            <a class="nav-link" href="{{ url_for('add_character') }}">Add Character</a>
+        </div>
+    </form>
+    <form method="POST" action="{{ url_for('update_characters') }}" style="margin-bottom: 20px;">
+        <button type="submit" class="btn btn-warning">Update Characters</button>
+    </form>
+    
+    <!-- Character Cards -->
+    <div class="character-list">
+        {% for character in characters %}
+<div class="character-card" 
+     style="background-color: {% if character['tags'] == '%Light Side%' %}blue{% elif character['tags'] == '%Dark Side%' %}red{% else %}#f9f9f9{% endif %};">
+    <div style="position: relative;">
+        <img src="{{ character['characterImage'] }}" alt="{{ character['characterName'] }}" class="character-image">
+
+        <!-- Overlay role image -->
+        {% if character['role_image'] %}
+        <img src="{{ character['role_image'] }}" alt="Role" class="role-image">
+        {% endif %}
+    </div>
+    <div class="character-details">
+        <h3>{{ character['characterName'] }}</h3>
+        {% if character['gear'] == 13 %}
+        <p>Relic: {{ character['relic'] }}</p>
+        {% else %}
+        <p>Stars: {{ character['stars'] }}  Level: {{ character['level'] }}  Gear: {{ character['gear'] }}</p>
+        {% endif %}
+        <p>Tags: {{ character['tags'] }}</p>
+    </div>
+    <div class="buttons">
+        <div class="bt">
+            <a href="{{ url_for('edit_character', characterID=character['characterID']) }}" class="btn btn-warning">Edit</a>
+        </div>
+        <div class="bt">
+            <form method="POST" action="{{ url_for('delete_character', characterID=character['characterID']) }}" class="btn btn-alert" style="display: inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+    </div>
+</div>
+{% endblock %}

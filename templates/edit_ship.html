@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Edit Ship</h1>
+    <form method="POST" action="{{ url_for('edit_ship', shipID=ship.shipID) }}">
+        <div class="form-group">
+            <label for="shipName">Ship Name</label>
+            <input type="text" name="shipName" id="shipName" class="form-control" value="{{ ship.shipName }}" required>
+        </div>
+        <div class="form-group">
+            <label for="level">Level</label>
+            <input type="number" name="level" id="level" class="form-control" value="{{ ship.level }}" min="1" max="85" required>
+        </div>
+        <div class="form-group">
+            <label for="stars">Stars</label>
+            <input type="number" name="stars" id="stars" class="form-control" value="{{ ship.stars }}" min="0" max="7" required>
+        </div>
+        <div class="form-group">
+            <label for="shipImage">Ship Image</label>
+            <input type="url" name="shipImage" id="shipImage" class="form-control" value="{{ ship.shipImage }}" required>
+        </div>
+        <div class="form-group">
+            <label for="tags">Tags (comma-separated)</label>
+            <input type="text" name="tags" id="tags" class="form-control" value="{{ ship.tags }}">
+        </div>
+        <div class="form-group">
+            <label for="pilots">Pilots (comma-separated)</label>
+            <input type="text" name="pilotNames" id="pilotNames" class="form-control" value="{{ ship.pilotNames }}">
+            <small class="form-text text-muted">Enter the pilots' names separated by commas.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Ship</button>
+        <a href="{{ url_for('ships') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

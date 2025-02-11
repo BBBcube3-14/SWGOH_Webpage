@@ -1,0 +1,359 @@
+/* General Styles */
+* {
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(72, 70, 70);
+}
+
+body {
+    width: 95%;
+    margin: 75px auto 25px;
+    background-color: white;
+    border: 2px solid darkgray;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding: 10px;
+}
+
+/* Page Header */
+h1 {
+    font-size: 2em;
+    color: lightseagreen;
+    text-align: center;
+    padding: 10px;
+    font-weight: 700;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 15px;
+}
+
+/* Navbar Styles */
+a.navbar-brand, ul li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 1.2em;
+    color: lightseagreen;
+    font-weight: bold;
+}
+
+a.navbar-brand:hover, ul li a:hover {
+    background-color: lightseagreen;
+    color: white;
+}
+
+/*List Styles*/
+ul {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: lightgray;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid white;
+    list-style-type: none;
+    z-index: 10;
+}
+
+li {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid #bbb;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+
+
+/* Characters Section */
+.character-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between cards */
+    justify-content: center;
+}
+
+.character-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    position: relative;
+    aspect-ratio: 3 / 4; /* Uniform card aspect ratio */
+    display: flex;
+    flex-direction: column; /* Stack content */
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.character-card:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+}
+
+.character-image {
+    width: 80%; /* Maintain proportional size within card */
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    margin-top: 10px;
+}
+
+.ship-image {
+    width: 80%; /* Maintain proportional size within card */
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    margin-top: 10px;
+    background-color: #f2f2f2; /* Add a placeholder background */
+    display: inline-block;
+}
+
+.character-details {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.character-details h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000000;
+}
+
+.character-details p {
+    margin: 5px 0;
+    color: #000000;
+}
+
+/*Character Buttons */
+.buttons {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5px 0;
+    
+}
+
+.bt {
+    width: 40%;
+    border: 5px black;
+}
+
+.bt a{
+    width: 100%;
+}
+
+.bt form button{
+    width: 100%;
+}
+
+/* Role Icon */
+.role-image {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+}
+
+/* Buttons */
+.btn {
+    margin-right: 10px;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.btn-warning { background-color: #ffc107; }
+.btn-danger { background-color: #dc3545; }
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    width: 40%;
+    text-decoration: none;
+}
+
+/* Footer */
+footer p {
+    text-align: center;
+    color: black;
+    font-size: 0.9em;
+    margin-top: 20px;
+}
+
+/* Light/Dark Side Card Styles */
+.character-card.light-side {
+    background-color: #cce7ff; /* Light blue for Light Side */
+}
+
+.character-card.dark-side {
+    background-color: #ffcccc; /* Light red for Dark Side */
+}
+
+.character-card.light-side .character-details {
+    color: #002855; /* Dark blue text */
+}
+
+.character-card.dark-side .character-details {
+    color: #5a0000; /* Dark red text */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+/*Filter Buttons*/
+.filter-search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px; /* Space between elements */
+}
+
+.search-bar {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px; /* Adjust width as needed */
+}
+
+.filter-dropdown {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 150px; /* Adjust width as needed */
+}
+
+/* Form container styling */
+.form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}
+        
+/* Input, select, and button styles */
+.form-group {
+    flex: 1;
+    min-width: 200px; /* Minimum width for responsiveness */
+}
+        
+.form-control, .btn {
+    width: 100%; /* Make all inputs/buttons take up full width of their container */
+    height: 50px; /* Uniform height */
+    font-size: 16px; /* Consistent text size */
+}
+
+th, td{
+    border:solid black 3px;
+}
+
+.gl_closeness {
+    margin: auto;
+    width: 90%;
+    font-size: 16px;
+}
+.gl_closeness thead{
+    background-color: gray;
+    font-weight: bold;
+}
+.gl_closeness tr:nth-child(even){
+    background-color: lightgray;
+}
+
+.gl_closeness {
+    text-align: center;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+.homepage_conatiner {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.homepage_section {
+    width:49%;
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.homepage_table {
+    margin:auto;
+    width:75%;
+}
+
+.homepage_table th {
+    font-weight: bold;
+    text-align: center;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 50%; /* Set width to 50% of the parent container */
+    margin: 0 auto; /* Center the chart horizontally */
+}
+canvas {
+    width:49%;
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;  /* Maintain aspect ratio */
+}

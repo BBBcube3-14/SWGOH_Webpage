@@ -1,0 +1,31 @@
+<!-- templates/create.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Edit Character</h2>
+  <form method="post" action="{{ url_for('edit_character', characterID=character.characterID) }}">
+    <label for="characterName">Character Name:</label>
+    <input type="text" id="characterName" name="characterName" value = "{{ character.characterName }}" required><br>
+
+    <label for="characterImage">Character Image:</label>
+    <input type="text" id="characterImage" name="characterImage" value = "{{ character.characterImage }}" required><br>
+
+    <label for="stars">Stars</label>
+    <input type="number" id="stars" name="stars" min="0" max="7" value = "{{ character.stars }}">
+
+    <label for="level">Level</label>
+    <input type="number" id="level" name="level" min="0" max="85" value = "{{ character.level }}">
+
+    <label for="gear">Gear Tier</label>
+    <input type="number" id="gear" name="gear" min="0" max="13" value = "{{ character.gear }}">
+
+    <label for="relic">Relic Tier</label>
+    <input type="number" id="relic" name="relic" min="0" max="9" value = "{{ character.relic }}">
+
+    <label for="tags">Tags:</label>
+    <textarea id="tags" name="tags" required value = "{{ character.tags }}" ></textarea><br>
+
+    <button type="submit">Save Changes</button>
+  </form>
+{% endblock %}

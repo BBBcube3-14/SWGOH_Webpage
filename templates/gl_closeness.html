@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galactic Legend Requirements</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    {% for gl in galactic_legends %}
+        <h2>{{ gl.name }}</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Relic/Star</th>
+                <th>Requirement</th>
+                <th>Completed</th>
+            </tr>
+            {% for req in gl.requirements %}
+                <tr>
+                    <td>{{ req.name }}</td>
+                    <td>{{ req.relic_or_star }}</td>
+                    <td>{{ req.requirement }}</td>
+                    <td>{{ req.completed }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Ships</h1>
+    <div class="d-flex justify-content-between mb-4">
+        <form method="GET" action="{{ url_for('ships') }}" class="form-inline">
+            <div class="form-group mr-3">
+                <input type="text" name="search" placeholder="Search by name" 
+                       value="{{ request.args.get('search', '') }}" class="form-control">
+            </div>
+            <div class="form-group mr-3">
+                <select name="filter" class="form-control">
+                    <option value="">Filter by tag</option>
+                    {% for tag in available_tags %}
+                    <option value="{{ tag.lower() }}" 
+                        {% if request.args.get('filter', '').lower() == tag.lower() %}selected{% endif %}>
+                        {{ tag }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Apply</button>
+                <a class="nav-link" href="{{ url_for('add_ship') }}">Add Ships</a>
+            </div>
+        </form>
+        <form method="POST" action="{{ url_for('update_ships') }}" style="margin-bottom: 20px;">
+            <button type="submit" class="btn btn-warning">Update Ships</button>
+        </form>
+    </div>
+
+    <div class="ship-list">
+        {% for ship in ships %}
+        <div class="ship-card d-flex align-items-center justify-content-between p-3 mb-3" 
+             style="background-color: {% if ship.side == 'light' %}blue{% elif ship.side == 'dark' %}red{% else %}#f9f9f9{% endif %}; border-radius: 10px; padding: 15px;">
+
+            <!-- Ship Image -->
+            <div class="ship-image-container mr-3">
+                <img src="{{ ship.shipImage }}" class="shipImage" alt="{{ ship.shipName }}" style="width: 120px; height: auto; border-radius: 10px;">
+            </div>
+
+            <!-- Ship Details in a centered box -->
+            <div class="ship-details flex-grow-1 d-flex flex-column justify-content-center text-center" style="width: 70%;">
+                <h3>{{ ship.shipName }}</h3>
+                <p>Stars: {{ ship.stars }} | Level: {{ ship.level }}</p>
+                <p>Tags: {{ ship.tags }}</p>
+                <p>
+                    <strong>Pilots:</strong> 
+                    {% if ship.pilotNames %}
+                        {{ ship.pilotNames }}
+                    {% else %}
+                        No Pilots Assigned
+                    {% endif %}
+                </p>
+            </div>
+
+            <!-- Buttons aligned right and vertically centered -->
+            <div class="buttons d-flex flex-column align-items-center" style="width: 100px;">
+                <a href="{{ url_for('edit_ship', shipID=ship.shipID) }}" class="btn btn-warning btn-sm mb-2 w-100">Edit</a>
+                <form method="POST" action="{{ url_for('delete_ship', shipID=ship.shipID) }}" class="w-100">
+                    <button type="submit" class="btn btn-danger btn-sm w-100">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

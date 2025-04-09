@@ -12,6 +12,8 @@ from concurrent.futures import ThreadPoolExecutor
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'your secret key'
 
+ALLY_CODE = 668135442
+
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
@@ -290,7 +292,7 @@ def delete_ship(shipID):
 
 @app.route('/update_characters', methods=['POST'])
 def update_characters():
-    url_to_scrape = 'https://swgoh.gg/p/'+str(//ALLY CODE//))+'/characters/'
+    url_to_scrape = 'https://swgoh.gg/p/'+str(ALLY_CODE)+'/characters/'
     driver = webdriver.Chrome()
     driver.get(url_to_scrape)
     character_data = []
@@ -362,7 +364,7 @@ def update_characters():
         return redirect(url_for('characters'))
 @app.route('/update_ships', methods=['POST'])
 def update_ships():
-    url_to_scrape = 'https://swgoh.gg/p/' + str(//ALLY CODE//) + '/ships/'
+    url_to_scrape = 'https://swgoh.gg/p/' + str(ALLY_CODE) + '/ships/'
     driver = webdriver.Chrome()
     ship_data = []
 
